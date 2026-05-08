@@ -12,7 +12,6 @@
     />
 
     <style>
-      /* ── Reset & tokens ─────────────────────────────────────────────── */
       *,
       *::before,
       *::after {
@@ -30,10 +29,9 @@
         --text: #c8d4e8;
         --text-dim: #5a708a;
         --text-bright: #eef2fa;
-        --accent-gt: #3ddc84; /* green  — Ground Truth  */
-        --accent-3dgs: #5b9cf6; /* blue   — Baseline 3DGS */
-        --accent-ss: #f0884a; /* orange — SeaSplat      */
-        --accent-hl: #5b9cf6;
+        --accent-gt: #3ddc84;
+        --accent-3dgs: #5b9cf6;
+        --accent-ss: #f0884a;
         --font-head: "Syne", sans-serif;
         --font-body: "DM Sans", sans-serif;
         --font-mono: "DM Mono", monospace;
@@ -55,7 +53,6 @@
         overflow-x: hidden;
       }
 
-      /* ── Noise overlay ──────────────────────────────────────────────── */
       body::before {
         content: "";
         position: fixed;
@@ -66,7 +63,6 @@
         opacity: 0.4;
       }
 
-      /* ── Layout ─────────────────────────────────────────────────────── */
       .page {
         position: relative;
         z-index: 1;
@@ -75,7 +71,6 @@
         padding: 0 28px 80px;
       }
 
-      /* ── Hero header ────────────────────────────────────────────────── */
       .hero {
         padding: 72px 0 52px;
         border-bottom: 1px solid var(--border);
@@ -109,7 +104,6 @@
         color: var(--text-bright);
         margin-bottom: 22px;
       }
-
       .hero h1 span {
         background: linear-gradient(
           100deg,
@@ -130,7 +124,6 @@
         margin-bottom: 36px;
       }
 
-      /* ── Legend pills ───────────────────────────────────────────────── */
       .legend {
         display: flex;
         flex-wrap: wrap;
@@ -149,7 +142,6 @@
         font-size: 12px;
         letter-spacing: 0.04em;
       }
-
       .legend-pill::before {
         content: "";
         display: inline-block;
@@ -157,7 +149,6 @@
         height: 8px;
         border-radius: 2px;
       }
-
       .legend-pill.gt {
         color: var(--accent-gt);
         border-color: color-mix(in srgb, var(--accent-gt) 30%, transparent);
@@ -180,18 +171,49 @@
         background: var(--accent-ss);
       }
 
-      /* ── Scene nav tabs ─────────────────────────────────────────────── */
+      .stats-bar {
+        display: flex;
+        flex-wrap: wrap;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        margin-top: 36px;
+      }
+      .stat-item {
+        flex: 1;
+        min-width: 120px;
+        padding: 20px 24px;
+        border-right: 1px solid var(--border);
+      }
+      .stat-item:last-child {
+        border-right: none;
+      }
+      .stat-value {
+        font-family: var(--font-head);
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--text-bright);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .stat-label {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+      }
+
       .scene-nav {
         display: flex;
         flex-wrap: wrap;
         gap: 6px;
-        padding: 36px 0 28px;
         position: sticky;
         top: 0;
         z-index: 10;
         background: linear-gradient(to bottom, var(--bg) 80%, transparent);
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding: 20px 0;
         margin-top: 16px;
       }
 
@@ -208,19 +230,16 @@
         transition: all var(--transition);
         user-select: none;
       }
-
       .scene-tab:hover {
         border-color: var(--border2);
         color: var(--text);
       }
-
       .scene-tab.active {
         background: var(--surface2);
         border-color: var(--accent-3dgs);
         color: var(--accent-3dgs);
       }
 
-      /* ── Scene section ──────────────────────────────────────────────── */
       .scene-section {
         display: none;
       }
@@ -248,7 +267,6 @@
         padding-bottom: 16px;
         border-bottom: 1px solid var(--border);
       }
-
       .scene-title {
         font-family: var(--font-head);
         font-size: 26px;
@@ -256,7 +274,6 @@
         color: var(--text-bright);
         letter-spacing: -0.01em;
       }
-
       .scene-count {
         font-family: var(--font-mono);
         font-size: 11px;
@@ -264,7 +281,6 @@
         letter-spacing: 0.1em;
       }
 
-      /* ── Comparison cards ───────────────────────────────────────────── */
       .comparisons-grid {
         display: flex;
         flex-direction: column;
@@ -280,7 +296,6 @@
           border-color var(--transition),
           box-shadow var(--transition);
       }
-
       .comp-card:hover {
         border-color: var(--border2);
         box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
@@ -294,14 +309,12 @@
         border-bottom: 1px solid var(--border);
         background: var(--surface2);
       }
-
       .comp-frame-id {
         font-family: var(--font-mono);
         font-size: 12px;
         color: var(--text-dim);
         letter-spacing: 0.08em;
       }
-
       .comp-frame-id span {
         color: var(--accent-3dgs);
       }
@@ -310,7 +323,6 @@
         display: flex;
         gap: 6px;
       }
-
       .col-badge {
         font-family: var(--font-mono);
         font-size: 10px;
@@ -318,7 +330,6 @@
         padding: 3px 9px;
         border-radius: 4px;
       }
-
       .col-badge.gt {
         background: color-mix(in srgb, var(--accent-gt) 15%, transparent);
         color: var(--accent-gt);
@@ -338,19 +349,16 @@
         background: #060810;
         cursor: zoom-in;
       }
-
       .comp-img-wrap img {
         width: 100%;
         height: auto;
         display: block;
         transition: transform 0.4s ease;
       }
-
       .comp-img-wrap:hover img {
         transform: scale(1.01);
       }
 
-      /* ── Lightbox ───────────────────────────────────────────────────── */
       .lightbox {
         display: none;
         position: fixed;
@@ -363,12 +371,10 @@
         cursor: zoom-out;
         backdrop-filter: blur(8px);
       }
-
       .lightbox.open {
         display: flex;
         animation: fadeIn 0.2s ease;
       }
-
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -377,14 +383,12 @@
           opacity: 1;
         }
       }
-
       .lightbox img {
         max-width: 100%;
         max-height: 90vh;
         border-radius: var(--radius);
         box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
       }
-
       .lightbox-close {
         position: fixed;
         top: 20px;
@@ -400,46 +404,6 @@
         color: var(--text-bright);
       }
 
-      /* ── Stats bar ──────────────────────────────────────────────────── */
-      .stats-bar {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        overflow: hidden;
-        margin-bottom: 36px;
-      }
-
-      .stat-item {
-        flex: 1;
-        min-width: 120px;
-        padding: 20px 24px;
-        border-right: 1px solid var(--border);
-      }
-      .stat-item:last-child {
-        border-right: none;
-      }
-
-      .stat-value {
-        font-family: var(--font-head);
-        font-size: 32px;
-        font-weight: 800;
-        color: var(--text-bright);
-        line-height: 1;
-        margin-bottom: 6px;
-      }
-
-      .stat-label {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--text-dim);
-      }
-
-      /* ── Footer ─────────────────────────────────────────────────────── */
       .footer {
         margin-top: 80px;
         padding-top: 28px;
@@ -450,20 +414,17 @@
         flex-wrap: wrap;
         gap: 12px;
       }
-
       .footer-left {
         font-family: var(--font-mono);
         font-size: 11px;
         color: var(--text-dim);
         letter-spacing: 0.06em;
       }
-
       .footer-left a {
         color: var(--accent-3dgs);
         text-decoration: none;
       }
 
-      /* ── Responsive ─────────────────────────────────────────────────── */
       @media (max-width: 640px) {
         .hero {
           padding: 48px 0 36px;
@@ -486,14 +447,13 @@
   </head>
   <body>
     <div class="page">
-      <!-- ── Hero ──────────────────────────────────────────────────────── -->
       <header class="hero">
         <p class="hero-eyebrow">3D Gaussian Splatting · Underwater Rendering</p>
         <h1>SeaSplat<br /><span>Scene Comparisons</span></h1>
         <p class="hero-desc">
           Visual comparison of ground-truth captures against baseline 3DGS
-          renders and SeaSplat's underwater physics model across four real-world
-          dive scenes.
+          renders and SeaSplat's underwater physics model across five real-world
+          scenes.
         </p>
         <div class="legend">
           <div class="legend-pill gt">Ground Truth</div>
@@ -502,14 +462,13 @@
         </div>
       </header>
 
-      <!-- ── Stats ─────────────────────────────────────────────────────── -->
-      <div class="stats-bar" style="margin-top: 36px">
+      <div class="stats-bar">
         <div class="stat-item">
-          <div class="stat-value">4</div>
-          <div class="stat-label">Scenes</div>
+          <div class="stat-value">5</div>
+          <div class="stat-label">Datasets</div>
         </div>
         <div class="stat-item">
-          <div class="stat-value">18</div>
+          <div class="stat-value">20</div>
           <div class="stat-label">Frames</div>
         </div>
         <div class="stat-item">
@@ -522,9 +481,11 @@
         </div>
       </div>
 
-      <!-- ── Scene nav ─────────────────────────────────────────────────── -->
-      <nav class="scene-nav" id="sceneNav">
-        <button class="scene-tab active" data-scene="Curasao">Curasao</button>
+      <nav class="scene-nav">
+        <button class="scene-tab active" data-scene="EiffelTower">
+          Eiffel Tower
+        </button>
+        <button class="scene-tab" data-scene="Curasao">Curasao</button>
         <button class="scene-tab" data-scene="IUI3-RedSea">
           IUI3 · Red Sea
         </button>
@@ -534,98 +495,142 @@
         <button class="scene-tab" data-scene="Panama">Panama</button>
       </nav>
 
-      <!-- ── Curasao ───────────────────────────────────────────────────── -->
-      <section class="scene-section visible" id="scene-Curasao">
+      <!-- Eiffel Tower — 7 frames -->
+      <section class="scene-section" id="scene-EiffelTower">
         <div class="scene-header">
-          <h2 class="scene-title">Curasao</h2>
-          <span class="scene-count">5 FRAMES</span>
+          <h2 class="scene-title">Eiffel Tower</h2>
+          <span class="scene-count">7 FRAMES</span>
         </div>
         <div class="comparisons-grid">
           <div class="comp-card">
             <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_1288</span></span>
+              <span class="comp-frame-id"
+                >frame / <span>20200918T071019.000Z</span></span
+              >
               <div class="comp-cols-label">
-                <span class="col-badge gt">GT</span>
-                <span class="col-badge tdgs">3DGS</span>
-                <span class="col-badge ss">SeaSplat</span>
+                <span class="col-badge gt">GT</span
+                ><span class="col-badge tdgs">3DGS</span
+                ><span class="col-badge ss">SeaSplat</span>
               </div>
             </div>
             <div class="comp-img-wrap" onclick="openLightbox(this)">
               <img
-                src="comparisons/Curasao/MTN_1288_comparison.jpg"
-                alt="Curasao MTN_1288 comparison"
+                src="comparisons/EiffelTower/20200918T071019.000Z_comparison.jpg"
+                alt="EiffelTower 071019"
                 loading="lazy"
               />
             </div>
           </div>
-
           <div class="comp-card">
             <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_1289</span></span>
+              <span class="comp-frame-id"
+                >frame / <span>20200918T071043.000Z</span></span
+              >
               <div class="comp-cols-label">
-                <span class="col-badge gt">GT</span>
-                <span class="col-badge tdgs">3DGS</span>
-                <span class="col-badge ss">SeaSplat</span>
+                <span class="col-badge gt">GT</span
+                ><span class="col-badge tdgs">3DGS</span
+                ><span class="col-badge ss">SeaSplat</span>
               </div>
             </div>
             <div class="comp-img-wrap" onclick="openLightbox(this)">
               <img
-                src="comparisons/Curasao/MTN_1289_comparison.jpg"
-                alt="Curasao MTN_1289 comparison"
+                src="comparisons/EiffelTower/20200918T071043.000Z_comparison.jpg"
+                alt="EiffelTower 071043"
                 loading="lazy"
               />
             </div>
           </div>
-
           <div class="comp-card">
             <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_1290</span></span>
+              <span class="comp-frame-id"
+                >frame / <span>20200918T071107.000Z</span></span
+              >
               <div class="comp-cols-label">
-                <span class="col-badge gt">GT</span>
-                <span class="col-badge tdgs">3DGS</span>
-                <span class="col-badge ss">SeaSplat</span>
+                <span class="col-badge gt">GT</span
+                ><span class="col-badge tdgs">3DGS</span
+                ><span class="col-badge ss">SeaSplat</span>
               </div>
             </div>
             <div class="comp-img-wrap" onclick="openLightbox(this)">
               <img
-                src="comparisons/Curasao/MTN_1290_comparison.jpg"
-                alt="Curasao MTN_1290 comparison"
+                src="comparisons/EiffelTower/20200918T071107.000Z_comparison.jpg"
+                alt="EiffelTower 071107"
                 loading="lazy"
               />
             </div>
           </div>
-
           <div class="comp-card">
             <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_1291</span></span>
+              <span class="comp-frame-id"
+                >frame / <span>20200918T071131.000Z</span></span
+              >
               <div class="comp-cols-label">
-                <span class="col-badge gt">GT</span>
-                <span class="col-badge tdgs">3DGS</span>
-                <span class="col-badge ss">SeaSplat</span>
+                <span class="col-badge gt">GT</span
+                ><span class="col-badge tdgs">3DGS</span
+                ><span class="col-badge ss">SeaSplat</span>
               </div>
             </div>
             <div class="comp-img-wrap" onclick="openLightbox(this)">
               <img
-                src="comparisons/Curasao/MTN_1291_comparison.jpg"
-                alt="Curasao MTN_1291 comparison"
+                src="comparisons/EiffelTower/20200918T071131.000Z_comparison.jpg"
+                alt="EiffelTower 071131"
                 loading="lazy"
               />
             </div>
           </div>
-
           <div class="comp-card">
             <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_1292</span></span>
+              <span class="comp-frame-id"
+                >frame / <span>20200918T071155.000Z</span></span
+              >
               <div class="comp-cols-label">
-                <span class="col-badge gt">GT</span>
-                <span class="col-badge tdgs">3DGS</span>
-                <span class="col-badge ss">SeaSplat</span>
+                <span class="col-badge gt">GT</span
+                ><span class="col-badge tdgs">3DGS</span
+                ><span class="col-badge ss">SeaSplat</span>
               </div>
             </div>
             <div class="comp-img-wrap" onclick="openLightbox(this)">
               <img
-                src="comparisons/Curasao/MTN_1292_comparison.jpg"
-                alt="Curasao MTN_1292 comparison"
+                src="comparisons/EiffelTower/20200918T071155.000Z_comparison.jpg"
+                alt="EiffelTower 071155"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-frame-id"
+                >frame / <span>20200918T071219.000Z</span></span
+              >
+              <div class="comp-cols-label">
+                <span class="col-badge gt">GT</span
+                ><span class="col-badge tdgs">3DGS</span
+                ><span class="col-badge ss">SeaSplat</span>
+              </div>
+            </div>
+            <div class="comp-img-wrap" onclick="openLightbox(this)">
+              <img
+                src="comparisons/EiffelTower/20200918T071219.000Z_comparison.jpg"
+                alt="EiffelTower 071219"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-frame-id"
+                >frame / <span>20200918T071243.000Z</span></span
+              >
+              <div class="comp-cols-label">
+                <span class="col-badge gt">GT</span
+                ><span class="col-badge tdgs">3DGS</span
+                ><span class="col-badge ss">SeaSplat</span>
+              </div>
+            </div>
+            <div class="comp-img-wrap" onclick="openLightbox(this)">
+              <img
+                src="comparisons/EiffelTower/20200918T071243.000Z_comparison.jpg"
+                alt="EiffelTower 071243"
                 loading="lazy"
               />
             </div>
@@ -633,11 +638,72 @@
         </div>
       </section>
 
-      <!-- ── IUI3-RedSea ───────────────────────────────────────────────── -->
+      <!-- Curasao — 3 frames -->
+      <section class="scene-section visible" id="scene-Curasao">
+        <div class="scene-header">
+          <h2 class="scene-title">Curasao</h2>
+          <span class="scene-count">3 FRAMES</span>
+        </div>
+        <div class="comparisons-grid">
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-frame-id">frame / <span>MTN_1288</span></span>
+              <div class="comp-cols-label">
+                <span class="col-badge gt">GT</span
+                ><span class="col-badge tdgs">3DGS</span
+                ><span class="col-badge ss">SeaSplat</span>
+              </div>
+            </div>
+            <div class="comp-img-wrap" onclick="openLightbox(this)">
+              <img
+                src="comparisons/Curasao/MTN_1288_comparison.jpg"
+                alt="Curasao MTN_1288"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-frame-id">frame / <span>MTN_1296</span></span>
+              <div class="comp-cols-label">
+                <span class="col-badge gt">GT</span
+                ><span class="col-badge tdgs">3DGS</span
+                ><span class="col-badge ss">SeaSplat</span>
+              </div>
+            </div>
+            <div class="comp-img-wrap" onclick="openLightbox(this)">
+              <img
+                src="comparisons/Curasao/MTN_1296_comparison.jpg"
+                alt="Curasao MTN_1296"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card-header">
+              <span class="comp-frame-id">frame / <span>MTN_1304</span></span>
+              <div class="comp-cols-label">
+                <span class="col-badge gt">GT</span
+                ><span class="col-badge tdgs">3DGS</span
+                ><span class="col-badge ss">SeaSplat</span>
+              </div>
+            </div>
+            <div class="comp-img-wrap" onclick="openLightbox(this)">
+              <img
+                src="comparisons/Curasao/MTN_1304_comparison.jpg"
+                alt="Curasao MTN_1304"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- IUI3-RedSea — 4 frames -->
       <section class="scene-section" id="scene-IUI3-RedSea">
         <div class="scene-header">
           <h2 class="scene-title">IUI3 · Red Sea</h2>
-          <span class="scene-count">5 FRAMES</span>
+          <span class="scene-count">4 FRAMES</span>
         </div>
         <div class="comparisons-grid">
           <div class="comp-card">
@@ -657,10 +723,9 @@
               />
             </div>
           </div>
-
           <div class="comp-card">
             <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_5895</span></span>
+              <span class="comp-frame-id">frame / <span>MTN_5903</span></span>
               <div class="comp-cols-label">
                 <span class="col-badge gt">GT</span
                 ><span class="col-badge tdgs">3DGS</span
@@ -669,16 +734,15 @@
             </div>
             <div class="comp-img-wrap" onclick="openLightbox(this)">
               <img
-                src="comparisons/IUI3-RedSea/MTN_5895_comparison.jpg"
-                alt="IUI3-RedSea MTN_5895"
+                src="comparisons/IUI3-RedSea/MTN_5903_comparison.jpg"
+                alt="IUI3-RedSea MTN_5903"
                 loading="lazy"
               />
             </div>
           </div>
-
           <div class="comp-card">
             <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_5896</span></span>
+              <span class="comp-frame-id">frame / <span>MTN_5911</span></span>
               <div class="comp-cols-label">
                 <span class="col-badge gt">GT</span
                 ><span class="col-badge tdgs">3DGS</span
@@ -687,16 +751,15 @@
             </div>
             <div class="comp-img-wrap" onclick="openLightbox(this)">
               <img
-                src="comparisons/IUI3-RedSea/MTN_5896_comparison.jpg"
-                alt="IUI3-RedSea MTN_5896"
+                src="comparisons/IUI3-RedSea/MTN_5911_comparison.jpg"
+                alt="IUI3-RedSea MTN_5911"
                 loading="lazy"
               />
             </div>
           </div>
-
           <div class="comp-card">
             <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_5898</span></span>
+              <span class="comp-frame-id">frame / <span>MTN_5928</span></span>
               <div class="comp-cols-label">
                 <span class="col-badge gt">GT</span
                 ><span class="col-badge tdgs">3DGS</span
@@ -705,26 +768,8 @@
             </div>
             <div class="comp-img-wrap" onclick="openLightbox(this)">
               <img
-                src="comparisons/IUI3-RedSea/MTN_5898_comparison.jpg"
-                alt="IUI3-RedSea MTN_5898"
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          <div class="comp-card">
-            <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_5899</span></span>
-              <div class="comp-cols-label">
-                <span class="col-badge gt">GT</span
-                ><span class="col-badge tdgs">3DGS</span
-                ><span class="col-badge ss">SeaSplat</span>
-              </div>
-            </div>
-            <div class="comp-img-wrap" onclick="openLightbox(this)">
-              <img
-                src="comparisons/IUI3-RedSea/MTN_5899_comparison.jpg"
-                alt="IUI3-RedSea MTN_5899"
+                src="comparisons/IUI3-RedSea/MTN_5928_comparison.jpg"
+                alt="IUI3-RedSea MTN_5928"
                 loading="lazy"
               />
             </div>
@@ -732,11 +777,11 @@
         </div>
       </section>
 
-      <!-- ── Japanese Gardens ─────────────────────────────────────────── -->
+      <!-- Japanese Gardens — 3 frames -->
       <section class="scene-section" id="scene-JapaneseGradens-RedSea">
         <div class="scene-header">
           <h2 class="scene-title">Japanese Gardens · Red Sea</h2>
-          <span class="scene-count">5 FRAMES</span>
+          <span class="scene-count">3 FRAMES</span>
         </div>
         <div class="comparisons-grid">
           <div class="comp-card">
@@ -756,10 +801,9 @@
               />
             </div>
           </div>
-
           <div class="comp-card">
             <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_1091</span></span>
+              <span class="comp-frame-id">frame / <span>MTN_1098</span></span>
               <div class="comp-cols-label">
                 <span class="col-badge gt">GT</span
                 ><span class="col-badge tdgs">3DGS</span
@@ -768,16 +812,15 @@
             </div>
             <div class="comp-img-wrap" onclick="openLightbox(this)">
               <img
-                src="comparisons/JapaneseGradens-RedSea/MTN_1091_comparison.jpg"
-                alt="Japanese Gardens MTN_1091"
+                src="comparisons/JapaneseGradens-RedSea/MTN_1098_comparison.jpg"
+                alt="Japanese Gardens MTN_1098"
                 loading="lazy"
               />
             </div>
           </div>
-
           <div class="comp-card">
             <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_1092</span></span>
+              <span class="comp-frame-id">frame / <span>MTN_1106</span></span>
               <div class="comp-cols-label">
                 <span class="col-badge gt">GT</span
                 ><span class="col-badge tdgs">3DGS</span
@@ -786,44 +829,8 @@
             </div>
             <div class="comp-img-wrap" onclick="openLightbox(this)">
               <img
-                src="comparisons/JapaneseGradens-RedSea/MTN_1092_comparison.jpg"
-                alt="Japanese Gardens MTN_1092"
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          <div class="comp-card">
-            <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_1093</span></span>
-              <div class="comp-cols-label">
-                <span class="col-badge gt">GT</span
-                ><span class="col-badge tdgs">3DGS</span
-                ><span class="col-badge ss">SeaSplat</span>
-              </div>
-            </div>
-            <div class="comp-img-wrap" onclick="openLightbox(this)">
-              <img
-                src="comparisons/JapaneseGradens-RedSea/MTN_1093_comparison.jpg"
-                alt="Japanese Gardens MTN_1093"
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          <div class="comp-card">
-            <div class="comp-card-header">
-              <span class="comp-frame-id">frame / <span>MTN_1094</span></span>
-              <div class="comp-cols-label">
-                <span class="col-badge gt">GT</span
-                ><span class="col-badge tdgs">3DGS</span
-                ><span class="col-badge ss">SeaSplat</span>
-              </div>
-            </div>
-            <div class="comp-img-wrap" onclick="openLightbox(this)">
-              <img
-                src="comparisons/JapaneseGradens-RedSea/MTN_1094_comparison.jpg"
-                alt="Japanese Gardens MTN_1094"
+                src="comparisons/JapaneseGradens-RedSea/MTN_1106_comparison.jpg"
+                alt="Japanese Gardens MTN_1106"
                 loading="lazy"
               />
             </div>
@@ -831,7 +838,7 @@
         </div>
       </section>
 
-      <!-- ── Panama ────────────────────────────────────────────────────── -->
+      <!-- Panama — 3 frames -->
       <section class="scene-section" id="scene-Panama">
         <div class="scene-header">
           <h2 class="scene-title">Panama</h2>
@@ -855,7 +862,6 @@
               />
             </div>
           </div>
-
           <div class="comp-card">
             <div class="comp-card-header">
               <span class="comp-frame-id">frame / <span>MTN_1539</span></span>
@@ -873,7 +879,6 @@
               />
             </div>
           </div>
-
           <div class="comp-card">
             <div class="comp-card-header">
               <span class="comp-frame-id">frame / <span>MTN_1547</span></span>
@@ -894,7 +899,6 @@
         </div>
       </section>
 
-      <!-- ── Footer ────────────────────────────────────────────────────── -->
       <footer class="footer">
         <div class="footer-left">
           SeaSplat · Underwater 3DGS Rendering ·
@@ -903,7 +907,6 @@
           >
         </div>
         <div class="footer-left">
-          Each frame:
           <span style="color: var(--accent-gt)">Ground Truth</span> ·
           <span style="color: var(--accent-3dgs)">Baseline 3DGS</span> ·
           <span style="color: var(--accent-ss)">SeaSplat</span>
@@ -911,37 +914,30 @@
       </footer>
     </div>
 
-    <!-- ── Lightbox ───────────────────────────────────────────────────── -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
       <span class="lightbox-close">[ ESC ] close</span>
       <img id="lightboxImg" src="" alt="" />
     </div>
 
     <script>
-      // ── Scene tabs ──────────────────────────────────────────────────────
       const tabs = document.querySelectorAll(".scene-tab");
       const sections = document.querySelectorAll(".scene-section");
 
       tabs.forEach((tab) => {
         tab.addEventListener("click", () => {
-          const target = tab.dataset.scene;
-
           tabs.forEach((t) => t.classList.remove("active"));
           tab.classList.add("active");
-
           sections.forEach((s) => {
             s.classList.remove("visible");
-            if (s.id === `scene-${target}`) s.classList.add("visible");
+            if (s.id === `scene-${tab.dataset.scene}`)
+              s.classList.add("visible");
           });
-
-          // Scroll to content start (below sticky nav)
           document
-            .getElementById(`scene-${target}`)
+            .getElementById(`scene-${tab.dataset.scene}`)
             .scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
 
-      // ── Lightbox ────────────────────────────────────────────────────────
       const lightbox = document.getElementById("lightbox");
       const lightboxImg = document.getElementById("lightboxImg");
 
