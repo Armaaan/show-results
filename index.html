@@ -425,6 +425,225 @@
         text-decoration: none;
       }
 
+      /* ── Metrics section ────────────────────────────────────────────── */
+      .metrics-section {
+        margin-top: 72px;
+        padding-top: 48px;
+        border-top: 1px solid var(--border);
+      }
+
+      .metrics-eyebrow {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent-ss);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .metrics-eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 28px;
+        height: 1px;
+        background: var(--accent-ss);
+      }
+
+      .metrics-title {
+        font-family: var(--font-head);
+        font-size: clamp(24px, 3vw, 36px);
+        font-weight: 800;
+        color: var(--text-bright);
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+
+      .metrics-desc {
+        color: var(--text-dim);
+        font-size: 14px;
+        font-weight: 300;
+        margin-bottom: 36px;
+        max-width: 560px;
+      }
+
+      .metrics-legend {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+
+      .metrics-legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--text-dim);
+        letter-spacing: 0.06em;
+      }
+
+      .metrics-legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+      }
+
+      .metrics-table-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+      }
+
+      table.metrics-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--font-mono);
+        font-size: 13px;
+      }
+
+      .metrics-table thead tr {
+        background: var(--surface2);
+        border-bottom: 1px solid var(--border2);
+      }
+
+      .metrics-table th {
+        padding: 14px 20px;
+        text-align: left;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .metrics-table th.th-scene {
+        color: var(--text-dim);
+      }
+      .metrics-table th.th-method {
+        color: var(--text-dim);
+      }
+      .metrics-table th.th-ssim {
+        color: var(--accent-gt);
+      }
+      .metrics-table th.th-psnr {
+        color: var(--accent-3dgs);
+      }
+      .metrics-table th.th-lpips {
+        color: var(--accent-ss);
+      }
+
+      .metrics-table th .th-hint {
+        display: block;
+        font-size: 9px;
+        letter-spacing: 0.06em;
+        opacity: 0.5;
+        margin-top: 2px;
+        text-transform: none;
+      }
+
+      .metrics-table tbody tr {
+        border-bottom: 1px solid var(--border);
+        transition: background var(--transition);
+      }
+
+      .metrics-table tbody tr:last-child {
+        border-bottom: none;
+      }
+      .metrics-table tbody tr:hover {
+        background: var(--surface2);
+      }
+
+      /* group separator between scenes */
+      .metrics-table tbody tr.scene-start td {
+        border-top: 2px solid var(--border2);
+      }
+      .metrics-table tbody tr.scene-start:first-child td {
+        border-top: none;
+      }
+
+      .metrics-table td {
+        padding: 12px 20px;
+        color: var(--text);
+        white-space: nowrap;
+      }
+
+      .td-scene {
+        font-weight: 500;
+        color: var(--text-bright);
+        font-size: 13px;
+      }
+
+      .td-method-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 4px 10px;
+        border-radius: 5px;
+        font-size: 11px;
+        letter-spacing: 0.05em;
+      }
+
+      .td-method-badge.m-3dgs {
+        background: color-mix(in srgb, var(--accent-3dgs) 12%, transparent);
+        color: var(--accent-3dgs);
+        border: 1px solid
+          color-mix(in srgb, var(--accent-3dgs) 25%, transparent);
+      }
+
+      .td-method-badge.m-ss {
+        background: color-mix(in srgb, var(--accent-ss) 12%, transparent);
+        color: var(--accent-ss);
+        border: 1px solid color-mix(in srgb, var(--accent-ss) 25%, transparent);
+      }
+
+      .td-method-badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 2px;
+      }
+
+      .td-method-badge.m-3dgs::before {
+        background: var(--accent-3dgs);
+      }
+      .td-method-badge.m-ss::before {
+        background: var(--accent-ss);
+      }
+
+      .td-val {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* highlight better value */
+      .td-val.better {
+        color: var(--text-bright);
+        font-weight: 500;
+      }
+      .td-val.worse {
+        color: var(--text-dim);
+      }
+
+      /* delta pill */
+      .td-delta {
+        display: inline-block;
+        font-size: 10px;
+        padding: 1px 6px;
+        border-radius: 4px;
+        margin-left: 6px;
+        letter-spacing: 0.03em;
+      }
+      .td-delta.pos {
+        background: color-mix(in srgb, var(--accent-gt) 15%, transparent);
+        color: var(--accent-gt);
+      }
+      .td-delta.neg {
+        background: color-mix(in srgb, #f06060 15%, transparent);
+        color: #f08080;
+      }
+
       @media (max-width: 640px) {
         .hero {
           padding: 48px 0 36px;
@@ -441,6 +660,10 @@
         }
         .comp-cols-label {
           display: none;
+        }
+        .metrics-table th,
+        .metrics-table td {
+          padding: 10px 12px;
         }
       }
     </style>
@@ -465,7 +688,7 @@
       <div class="stats-bar">
         <div class="stat-item">
           <div class="stat-value">5</div>
-          <div class="stat-label">Datasets</div>
+          <div class="stat-label">Scenes</div>
         </div>
         <div class="stat-item">
           <div class="stat-value">20</div>
@@ -899,17 +1122,182 @@
         </div>
       </section>
 
+      <!-- ── Metrics Table ─────────────────────────────────────────────── -->
+      <section class="metrics-section">
+        <p class="metrics-eyebrow">Quantitative Evaluation</p>
+        <h2 class="metrics-title">Performance Metrics</h2>
+        <p class="metrics-desc">
+          Test-set scores across all scenes. Higher SSIM &amp; PSNR is better.
+          Lower LPIPS is better. Δ shows SeaSplat's gain over Baseline 3DGS.
+        </p>
+
+        <div class="metrics-legend">
+          <div class="metrics-legend-item">
+            <div
+              class="metrics-legend-dot"
+              style="background: var(--accent-3dgs)"
+            ></div>
+            Baseline 3DGS
+          </div>
+          <div class="metrics-legend-item">
+            <div
+              class="metrics-legend-dot"
+              style="background: var(--accent-ss)"
+            ></div>
+            SeaSplat
+          </div>
+          <div class="metrics-legend-item">
+            <div
+              class="metrics-legend-dot"
+              style="background: var(--accent-gt); border-radius: 50%"
+            ></div>
+            Δ = SeaSplat − Baseline (green = improvement)
+          </div>
+        </div>
+
+        <div class="metrics-table-wrap">
+          <table class="metrics-table">
+            <thead>
+              <tr>
+                <th class="th-scene">Scene</th>
+                <th class="th-method">Method</th>
+                <th class="th-ssim">
+                  SSIM <span class="th-hint">↑ higher better</span>
+                </th>
+                <th class="th-psnr">
+                  PSNR (dB) <span class="th-hint">↑ higher better</span>
+                </th>
+                <th class="th-lpips">
+                  LPIPS <span class="th-hint">↓ lower better</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Curasao -->
+              <tr class="scene-start">
+                <td class="td-scene" rowspan="2">Curasao</td>
+                <td>
+                  <span class="td-method-badge m-3dgs">Baseline 3DGS</span>
+                </td>
+                <td class="td-val worse">0.671</td>
+                <td class="td-val worse">16.12</td>
+                <td class="td-val worse">0.290</td>
+              </tr>
+              <tr>
+                <td><span class="td-method-badge m-ss">SeaSplat</span></td>
+                <td class="td-val better">
+                  0.902 <span class="td-delta pos">+0.231</span>
+                </td>
+                <td class="td-val better">
+                  29.80 <span class="td-delta pos">+13.68</span>
+                </td>
+                <td class="td-val better">
+                  0.187 <span class="td-delta pos">−0.103</span>
+                </td>
+              </tr>
+
+              <!-- Eiffel Tower -->
+              <tr class="scene-start">
+                <td class="td-scene" rowspan="2">Eiffel Tower</td>
+                <td>
+                  <span class="td-method-badge m-3dgs">Baseline 3DGS</span>
+                </td>
+                <td class="td-val worse">0.708</td>
+                <td class="td-val worse">23.92</td>
+                <td class="td-val worse">0.196</td>
+              </tr>
+              <tr>
+                <td><span class="td-method-badge m-ss">SeaSplat</span></td>
+                <td class="td-val better">
+                  0.851 <span class="td-delta pos">+0.143</span>
+                </td>
+                <td class="td-val better">
+                  26.75 <span class="td-delta pos">+2.83</span>
+                </td>
+                <td class="td-val better">
+                  0.175 <span class="td-delta pos">−0.021</span>
+                </td>
+              </tr>
+
+              <!-- IUI3-RedSea -->
+              <tr class="scene-start">
+                <td class="td-scene" rowspan="2">IUI3 · Red Sea</td>
+                <td>
+                  <span class="td-method-badge m-3dgs">Baseline 3DGS</span>
+                </td>
+                <td class="td-val worse">0.696</td>
+                <td class="td-val worse">15.99</td>
+                <td class="td-val worse">0.258</td>
+              </tr>
+              <tr>
+                <td><span class="td-method-badge m-ss">SeaSplat</span></td>
+                <td class="td-val better">
+                  0.865 <span class="td-delta pos">+0.169</span>
+                </td>
+                <td class="td-val better">
+                  26.78 <span class="td-delta pos">+10.79</span>
+                </td>
+                <td class="td-val better">
+                  0.208 <span class="td-delta pos">−0.050</span>
+                </td>
+              </tr>
+
+              <!-- Japanese Gardens -->
+              <tr class="scene-start">
+                <td class="td-scene" rowspan="2">Japanese Gardens</td>
+                <td>
+                  <span class="td-method-badge m-3dgs">Baseline 3DGS</span>
+                </td>
+                <td class="td-val worse">0.674</td>
+                <td class="td-val worse">16.95</td>
+                <td class="td-val worse">0.239</td>
+              </tr>
+              <tr>
+                <td><span class="td-method-badge m-ss">SeaSplat</span></td>
+                <td class="td-val better">
+                  0.871 <span class="td-delta pos">+0.197</span>
+                </td>
+                <td class="td-val better">
+                  22.29 <span class="td-delta pos">+5.34</span>
+                </td>
+                <td class="td-val better">
+                  0.183 <span class="td-delta pos">−0.056</span>
+                </td>
+              </tr>
+
+              <!-- Panama -->
+              <tr class="scene-start">
+                <td class="td-scene" rowspan="2">Panama</td>
+                <td>
+                  <span class="td-method-badge m-3dgs">Baseline 3DGS</span>
+                </td>
+                <td class="td-val worse">0.673</td>
+                <td class="td-val worse">18.44</td>
+                <td class="td-val worse">0.212</td>
+              </tr>
+              <tr>
+                <td><span class="td-method-badge m-ss">SeaSplat</span></td>
+                <td class="td-val better">
+                  0.902 <span class="td-delta pos">+0.229</span>
+                </td>
+                <td class="td-val better">
+                  28.52 <span class="td-delta pos">+10.08</span>
+                </td>
+                <td class="td-val better">
+                  0.149 <span class="td-delta pos">−0.063</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <footer class="footer">
         <div class="footer-left">
           SeaSplat · Underwater 3DGS Rendering ·
           <a href="https://seasplat.github.io" target="_blank"
             >seasplat.github.io</a
           >
-        </div>
-        <div class="footer-left">
-          <span style="color: var(--accent-gt)">Ground Truth</span> ·
-          <span style="color: var(--accent-3dgs)">Baseline 3DGS</span> ·
-          <span style="color: var(--accent-ss)">SeaSplat</span>
         </div>
       </footer>
     </div>
